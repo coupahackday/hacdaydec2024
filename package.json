@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/coupahackday/hacdaydec2024/issues"
   },
-  "homepage": "https://github.com/coupahackday/hacdaydec2024#readme"
+  "homepage": "https://github.com/coupahackday/hacdaydec2024#readme",
+  "dependencies": {
+    "axios": "^1.7.9"
+  }
 }
