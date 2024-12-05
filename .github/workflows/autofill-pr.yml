@@ -1,0 +1,37 @@
+name: Autofill PR Details
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  autofill-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Extract Jira Issue Key
+        id: extract_jira
+        run: |
+          # Extract branch name from GitHub ref
+          BRANCH_NAME="${{ github.head_ref }}"
+          # Use a regex to find something like PROJ-1234 in the branch name
+          ISSUE_KEY=$(echo "$BRANCH_NAME" | grep -oE '[A-Z]+-[0-9]+')
+          echo "issue_key=$ISSUE_KEY" >> $GITHUB_OUTPUT
+
+      - name: Fetch Jira Details and Update PR
+        if: steps.extract_jira.outputs.issue_key != ''
+        run: node .github/scripts/update-pr-details.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JIRA_USER: ${{ secrets.JIRA_USER }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          ISSUE_KEY: ${{ steps.extract_jira.outputs.issue_key }}
+
+      # Optionally, you can add a step that triggers on PR merge to update the Jira ticket’s root cause field.
+      # This would go into a separate workflow or a separate job triggered on `pull_request` of type `closed` 
+      # with `merge: true`.
