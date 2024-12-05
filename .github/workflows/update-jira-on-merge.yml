@@ -16,6 +16,9 @@ jobs:
           ISSUE_KEY=$(echo "$BRANCH_NAME" | grep -oE '[A-Z]+-[0-9]+')
           echo "issue_key=$ISSUE_KEY" >> $GITHUB_OUTPUT
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Update Jira
         if: steps.extract_jira.outputs.issue_key != ''
         run: node .github/scripts/update-jira.js
