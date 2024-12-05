@@ -17,7 +17,7 @@ jobs:
           echo "issue_key=$ISSUE_KEY" >> $GITHUB_OUTPUT
 
       - name: Install dependencies
-        run: npm install
+        run: npm install axios
 
       - name: Update Jira
         if: steps.extract_jira.outputs.issue_key != ''
