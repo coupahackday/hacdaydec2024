@@ -1,3 +1,4 @@
 class ApplicationController < ActionController::Base
-  "Test 1111111"
+  "Test 111111111"
+  "For testing merge PR"
 end
