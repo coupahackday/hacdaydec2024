@@ -62,7 +62,8 @@ const axios = require('axios');
 
     const prDescriptionParts = [
   `## JIRA`,
-  `[MAIN_JIRA]: [${ISSUE_KEY}](${JIRA_BASE_URL}/browse/${ISSUE_KEY})`,
+  `[MAIN_JIRA]: ${JIRA_BASE_URL}/browse/${ISSUE_KEY}`,
+  ``,
   `* [Main JIRA ticket][MAIN_JIRA]`,
   ``,
   `## Code reviewers`,
@@ -72,7 +73,7 @@ const axios = require('axios');
   `## Summary of issue:`,
   `${fields.summary}`,
   ``, 
-  `**Root Cause Summary**: ${fields.customfield_10022 || 'Not provided'}`,
+  `## Root Cause Summary: ${fields.customfield_10022 || 'Not provided'}`,
   ``, 
   `## Summary of change:`,
   ``,
