@@ -72,6 +72,8 @@ const axios = require('axios');
   ``,
   `## Summary of issue:`,
   `${fields.summary}`,
+  ``,
+  `${fields.description?.content?.map(block => block.content?.map(c => c.text).join(' ')).join('\n') || 'No description provided.'}`,
   ``, 
   `## Root Cause Summary:`,
   ``,
