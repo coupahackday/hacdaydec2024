@@ -3,4 +3,12 @@ class ApplicationController < ActionController::Base
   "For testing merge PR"
   "For testing merge PR"
   "For testing merge PR12344"
+  "For testing merge PR12344"
+  "For testing merge PR12344"
+  "For testing merge PR12344"
+  "For testing merge PR12344"
+  "For testing merge PR12344"
+  "For testing merge PR12344"
+  "For testing merge PR12344"
+  "For testing merge PR12344"
 end
