@@ -47,7 +47,7 @@ const axios = require('axios');
       `**Description**:`,
       `${fields.description?.content?.map(block => block.content?.map(c => c.text).join(' ')).join('\n') || 'No description provided.'}`,
       '',
-      `**Root Cause**: ${fields.customfield_10022 || 'Not provided'}`
+      `**Root Cause Summary**: ${fields.customfield_10022 || 'Not provided'}`
     ];
 
     const prBody = prDescriptionParts.join('\n');
