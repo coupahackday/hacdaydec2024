@@ -40,6 +40,12 @@ const axios = require('axios');
     const prTitle = fields.summary || `Update related to ${ISSUE_KEY}`;
     // You can enrich PR body with more details from the Jira description and root cause if available.
     const prDescriptionParts = [
+      `## JIRA`
+        '',
+        `[MAIN_JIRA]:[${ISSUE_KEY}](${JIRA_BASE_URL}/browse/${ISSUE_KEY})`
+        '',
+      `* [Main JIRA ticket][MAIN_JIRA]`,
+      '',
       `**Jira Issue**: [${ISSUE_KEY}](${JIRA_BASE_URL}/browse/${ISSUE_KEY})`,
       '',
       `**Summary**: ${fields.summary}`,
