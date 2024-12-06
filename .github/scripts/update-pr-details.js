@@ -75,7 +75,7 @@ const axios = require('axios');
   ``, 
   `## Root Cause Summary:`,
   ``,
-  `${fields.customfield_10022 || 'Not provided'}`
+  `${fields.customfield_10022 || 'Not provided'}`,
   ``, 
   `## Summary of change:`,
   ``,
