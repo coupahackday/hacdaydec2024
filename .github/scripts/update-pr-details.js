@@ -39,26 +39,59 @@ const axios = require('axios');
     // Extract fields for PR
     const prTitle = fields.summary || `Update related to ${ISSUE_KEY}`;
     // You can enrich PR body with more details from the Jira description and root cause if available.
-    const prDescriptionParts = [
-      // `## JIRA`
+    // const prDescriptionParts = [
+    //   // `## JIRA`
       
-      //   `[MAIN_JIRA]:[${ISSUE_KEY}](${JIRA_BASE_URL}/browse/${ISSUE_KEY})`
+    //   //   `[MAIN_JIRA]:[${ISSUE_KEY}](${JIRA_BASE_URL}/browse/${ISSUE_KEY})`
 
-      // `* [Main JIRA ticket][MAIN_JIRA]`,
-      // '',
-      `**Code reviewers**:`,
-      '',
-      `[] @ranjan`,
-      '',
-      `**Jira Issue**: [${ISSUE_KEY}](${JIRA_BASE_URL}/browse/${ISSUE_KEY})`,
-      '',
-      `**Summary**: ${fields.summary}`,
-      '',
-      `**Description**:`,
-      `${fields.description?.content?.map(block => block.content?.map(c => c.text).join(' ')).join('\n') || 'No description provided.'}`,
-      '',
-      `**Root Cause Summary**: ${fields.customfield_10022 || 'Not provided'}`
-    ];
+    //   // `* [Main JIRA ticket][MAIN_JIRA]`,
+    //   // '',
+    //   `**Code reviewers**:`,
+    //   '',
+    //   `[] @ranjan`,
+    //   '',
+    //   `**Jira Issue**: [${ISSUE_KEY}](${JIRA_BASE_URL}/browse/${ISSUE_KEY})`,
+    //   '',
+    //   `**Summary**: ${fields.summary}`,
+    //   '',
+    //   `**Description**:`,
+    //   `${fields.description?.content?.map(block => block.content?.map(c => c.text).join(' ')).join('\n') || 'No description provided.'}`,
+    //   '',
+    //   `**Root Cause Summary**: ${fields.customfield_10022 || 'Not provided'}`
+    // ];
+
+    const prDescriptionParts = [
+  `## JIRA`,
+  `[MAIN_JIRA]: [${ISSUE_KEY}](${JIRA_BASE_URL}/browse/${ISSUE_KEY})`,
+  `* [Main JIRA ticket][MAIN_JIRA]`,
+  ``,
+  `## Code reviewers`,
+  `- [x] @akshay-coupa`,
+  `- [x] @prachisrivastava-coupa`,
+  ``,
+  `## Summary of issue:`,
+  `${fields.summary}`,
+  ``, 
+  `**Root Cause Summary**: ${fields.customfield_10022 || 'Not provided'}`,
+  ``, 
+  `## Summary of change:`,
+  ``,
+  `## Testing approach:`,
+  `Rspec`,
+  ``,
+  `## Select which Feature Test set to run:`,
+  `- [x] Speculator tests`,
+  `- [ ] Component tests`,
+  `- [ ] No tests`,
+  ``,
+  `## Useful Links`,
+  `<details>`,
+  `<summary>Show links</summary>`,
+  `* [Code Review Checklists 1](https://stackoverflowteams.com/c/coupa/articles/2518)`,
+  `* [Code Review Checklists 2](https://coupadev.atlassian.net/wiki/display/CD/Code+Review+Checklist)`,
+  `</details>`,
+  ``,
+];
 
     const prBody = prDescriptionParts.join('\n');
 
