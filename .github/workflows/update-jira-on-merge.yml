@@ -4,6 +4,9 @@ on:
   pull_request:
     types: [closed]
 
+permissions:
+  pull-requests: write
+
 jobs:
   update-jira:
     if: github.event.pull_request.merged == true
