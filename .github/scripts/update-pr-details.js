@@ -38,6 +38,7 @@ const axios = require('axios');
 
     // Extract fields for PR
     const prTitle = fields.summary || `Update related to ${ISSUE_KEY}`;
+    const rootCauseSummary = fields.customfield_10037?.content?.[0]?.content?.[0]?.text || "Root Cause Summary not available";
     // You can enrich PR body with more details from the Jira description and root cause if available.
     const prDescriptionParts = [
   `## JIRA`,
@@ -56,7 +57,7 @@ const axios = require('axios');
   ``, 
   `## Root Cause Summary:`,
   ``,
-  `${fields.customfield_10022 || JSON.stringify(fields, null, 2)}`,
+  `${rootCauseSummary}`,
   ``, 
   `## Summary of change:`,
   ``,
