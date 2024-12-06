@@ -39,27 +39,6 @@ const axios = require('axios');
     // Extract fields for PR
     const prTitle = fields.summary || `Update related to ${ISSUE_KEY}`;
     // You can enrich PR body with more details from the Jira description and root cause if available.
-    // const prDescriptionParts = [
-    //   // `## JIRA`
-      
-    //   //   `[MAIN_JIRA]:[${ISSUE_KEY}](${JIRA_BASE_URL}/browse/${ISSUE_KEY})`
-
-    //   // `* [Main JIRA ticket][MAIN_JIRA]`,
-    //   // '',
-    //   `**Code reviewers**:`,
-    //   '',
-    //   `[] @ranjan`,
-    //   '',
-    //   `**Jira Issue**: [${ISSUE_KEY}](${JIRA_BASE_URL}/browse/${ISSUE_KEY})`,
-    //   '',
-    //   `**Summary**: ${fields.summary}`,
-    //   '',
-    //   `**Description**:`,
-    //   `${fields.description?.content?.map(block => block.content?.map(c => c.text).join(' ')).join('\n') || 'No description provided.'}`,
-    //   '',
-    //   `**Root Cause Summary**: ${fields.customfield_10022 || 'Not provided'}`
-    // ];
-
     const prDescriptionParts = [
   `## JIRA`,
   `[MAIN_JIRA]: ${JIRA_BASE_URL}/browse/${ISSUE_KEY}`,
@@ -77,7 +56,7 @@ const axios = require('axios');
   ``, 
   `## Root Cause Summary:`,
   ``,
-  `${fields.customfield_10022 || issueData}`,
+  `${fields.customfield_10022 || JSON.stringify(fields, null, 2)}`,
   ``, 
   `## Summary of change:`,
   ``,
